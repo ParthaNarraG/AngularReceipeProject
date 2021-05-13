@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-4" *ngFor="let receipe of receipes">
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" [src]="receipe.imagePath" alt={{receipe.name}} width="300" height="200">
@@ -7,5 +7,17 @@
               <p class="card-text">{{receipe.description}}</p>
             </div>
           </div>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-lg-4" *ngFor="let receipe of receipes">
+        <div class="card-wrapper">
+            <div class="card-image" style="background-image: url({{receipe.imagePath}});">
+
+            </div>
+            <h5>{{receipe.name}}</h5>
+            <p>{{receipe.description}}</p>
+        </div> 
     </div>
 </div>
