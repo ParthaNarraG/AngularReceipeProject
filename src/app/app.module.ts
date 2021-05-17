@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header/header.component';
 import { ReceipesComponent } from './receipes/receipes/receipes.component';
 import { ReceipeListComponent } from './receipes/receipes/receipe-list/receipe-list.component';
+import { ReceipeItemComponent} from './receipes/receipes/receipe-list/receipe-item/receipe-item.component';
 import { ReceipeDetailComponent } from './receipes/receipes/receipe-detail/receipe-detail.component';
 import { ShoppingListComponent} from './shoppingList/shopping-list/shopping-list.component'
 import { ShoppingEditComponent } from './shoppingList/shopping-edit/shopping-edit.component';
@@ -19,6 +20,7 @@ import { ShoppingEditComponent } from './shoppingList/shopping-edit/shopping-edi
     ReceipesComponent,
     ReceipeListComponent,
     ReceipeDetailComponent,
+    ReceipeItemComponent,
     ShoppingEditComponent,
     ShoppingListComponent
   ],

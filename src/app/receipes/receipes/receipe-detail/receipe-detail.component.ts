@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-receipe-detail',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceipeDetailComponent implements OnInit {
 
+  @Input() receipeDetails:any;
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

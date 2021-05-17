@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'maxmillianTutorials';
+  selectedNavLink:any="receipes";
+
+  checkSelectedItem(data:any){
+    this.selectedNavLink=data;
+  }
+
 }

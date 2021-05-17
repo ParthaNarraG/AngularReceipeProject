@@ -1,1 +1,20 @@
-<p>shopping-edit works!</p>
+<div class="mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label for="">Receipe</label>
+            <input type="text" 
+            class="form-control"
+            #ingredientName>
+        </div>
+        <div class="col-3">
+            <label for="">Amount</label>
+            <input type="text" class="form-control"
+            #ingredientQuantity>
+        </div>
+    </div>
+    <div class="mt-4">
+        <button class="btn btn-success" (click)="addIngredient(ingredientName.value,ingredientQuantity.value)">Add</button>
+        <button class="btn btn-danger ml-2">Delete</button>
+        <button class="btn btn-secondary ml-2">Clear</button>
+    </div>
+</div>
