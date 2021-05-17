@@ -14,12 +14,16 @@ export class ShoppingEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * @description Add an Ingredient with Ingredient Name and Quantity
+   * @param name 
+   * @param quantity 
+   */
   addIngredient(name:any,quantity:any){
     let newItem={
       ingredientName:name,
       quantity:quantity
     }
-    console.log(newItem);
     this.addNewIngredient.emit(newItem)
   }
 

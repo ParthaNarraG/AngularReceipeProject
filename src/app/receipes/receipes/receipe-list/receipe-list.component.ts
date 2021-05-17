@@ -42,6 +42,10 @@ export class ReceipeListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * @description sending the receipe details clicked by the user
+   * @param data 
+   */
   receipeDetails(data:any){
     this.reciepeDetailsInfo.emit(data);
   }

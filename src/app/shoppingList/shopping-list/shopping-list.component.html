@@ -1,7 +1,8 @@
-<div class="row">
+<div class="row no-gutters">
     <div class="col-xs-10">
         <app-shopping-edit (addNewIngredient)="addItem($event)"></app-shopping-edit>
         <hr>
     </div>
 </div>
-<p *ngFor="let list of ingredient">{{list.ingredientName}} {{list.quantity}}</p>
+<p class="ingredientList" *ngFor="let list of ingredient">{{list.ingredientName}} {{list.quantity}}</p>
+

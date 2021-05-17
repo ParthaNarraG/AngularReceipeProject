@@ -9,6 +9,10 @@ export class AppComponent {
   title = 'maxmillianTutorials';
   selectedNavLink:any="receipes";
 
+  /**
+   * @description Assigning the data received by the user click navigation
+   * @param data 
+   */
   checkSelectedItem(data:any){
     this.selectedNavLink=data;
   }

@@ -13,6 +13,4 @@ export class ReceipeDetailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-
 }

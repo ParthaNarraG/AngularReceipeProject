@@ -14,6 +14,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * @description sending the details of which navigation link clicked by the user
+   * @param data 
+   */
   navigator(data:any){
     this.navigateItem.emit(data);
   }
