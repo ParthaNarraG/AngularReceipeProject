@@ -16,5 +16,4 @@ export class AppComponent {
   checkSelectedItem(data:any){
     this.selectedNavLink=data;
   }
-
 }
