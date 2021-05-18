@@ -2,4 +2,17 @@
 <div class="my-5">
     <p>{{receipeDetails.name}}</p>
     <p>{{receipeDetails.description}}</p>
+    <div class="btn-group my-2">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage Recepie
+        </button>
+        <div class="dropdown-menu show">[
+          <a class="dropdown-item" href="#" (click)="sendIngredients(receipeDetails.ingredient)">ShoppingList</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let ingredient of receipeDetails.ingredient">{{ingredient.ingredientName}} ({{ingredient.quantity}})</li>
+    </ul>
 </div>

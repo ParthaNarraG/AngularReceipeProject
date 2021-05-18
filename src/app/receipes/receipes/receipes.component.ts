@@ -13,12 +13,4 @@ export class ReceipesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /**
-   * @description Assigining the selected receipe Details to receipeInfo
-   * @param data 
-   */
-  getReceipeDetails(data:any){
-    this.receipeInfo=data;
-  }
-
 }
