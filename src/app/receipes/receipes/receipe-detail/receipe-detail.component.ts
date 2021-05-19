@@ -8,6 +8,7 @@ import { ShoppingServiceService } from 'src/app/services/shopping-service.servic
   styleUrls: ['./receipe-detail.component.scss']
 })
 export class ReceipeDetailComponent implements OnInit {
+  isShow:boolean=false;
   receipeDetails: any = "";
   constructor(private recepieService: ReceipeServiceService, private shoppingService: ShoppingServiceService) {
     this.recepieService.reciepeDetailsInfo.subscribe((data: any) => {
@@ -29,6 +30,10 @@ export class ReceipeDetailComponent implements OnInit {
       }
       this.shoppingService.addIngredient(newItem);
     })
+  }
+
+  manageReceipeDropdown(){
+    this.isShow=!this.isShow;
   }
 
   ngOnInit(): void {

@@ -6,7 +6,7 @@ import { Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  isShow:boolean=false;
   @Output() navigateItem=new EventEmitter()
 
   constructor() { }
@@ -20,6 +20,11 @@ export class HeaderComponent implements OnInit {
    */
   navigator(data:any){
     this.navigateItem.emit(data);
+  }
+
+
+  manageDropdown(){
+    this.isShow=!this.isShow;
   }
 
 }
