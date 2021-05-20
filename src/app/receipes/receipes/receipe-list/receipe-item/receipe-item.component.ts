@@ -7,7 +7,7 @@ import { receipe } from '../../receipe.model';
   styleUrls: ['./receipe-item.component.scss']
 })
 export class ReceipeItemComponent implements OnInit {
-
+  @Input() index:number=0;
   @Input() receipe:any;
   constructor() { }
 

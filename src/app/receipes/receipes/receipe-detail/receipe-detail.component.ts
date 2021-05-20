@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ReceipeServiceService } from 'src/app/services/receipe-service.service';
 import { ShoppingServiceService } from 'src/app/services/shopping-service.service';
 
@@ -8,9 +9,11 @@ import { ShoppingServiceService } from 'src/app/services/shopping-service.servic
   styleUrls: ['./receipe-detail.component.scss']
 })
 export class ReceipeDetailComponent implements OnInit {
+  id:number=0;
   isShow:boolean=false;
   receipeDetails: any = "";
-  constructor(private recepieService: ReceipeServiceService, private shoppingService: ShoppingServiceService) {
+  constructor(private recepieService: ReceipeServiceService, private shoppingService: ShoppingServiceService,
+    private route:ActivatedRoute,private router:Router) {
     this.recepieService.reciepeDetailsInfo.subscribe((data: any) => {
       this.receipeDetails = data;
       console.log(data);
@@ -37,7 +40,13 @@ export class ReceipeDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.route.params.subscribe((params:Params)=>{
+      this.id=+params['id'];
+      this.receipeDetails=this.recepieService.getReceipe(this.id);
+    })
   }
 
+  editReceipe(){
+    this.router.navigate(["edit"],{relativeTo:this.route})
+  }
 }

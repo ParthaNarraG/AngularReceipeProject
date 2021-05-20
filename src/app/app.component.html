@@ -1,7 +1,6 @@
-<app-header (navigateItem)="checkSelectedItem($event)"></app-header>
+<app-header></app-header>
 <div class="container">
     <div class="col-md-12">
-        <app-receipes *ngIf="selectedNavLink==='receipes'" ></app-receipes>
-        <app-shopping-list *ngIf="selectedNavLink==='shopping'"></app-shopping-list>
+        <router-outlet></router-outlet>
     </div>
 </div>

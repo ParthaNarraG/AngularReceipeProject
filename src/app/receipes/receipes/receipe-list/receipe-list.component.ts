@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReceipeServiceService } from 'src/app/services/receipe-service.service';
 import { receipe } from '../receipe.model'
 
@@ -13,7 +14,7 @@ export class ReceipeListComponent implements OnInit {
   receipes:any;
   
 
-  constructor(private recepieService:ReceipeServiceService) { }
+  constructor(private recepieService:ReceipeServiceService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.receipes=this.recepieService.receipes;
@@ -27,5 +28,8 @@ export class ReceipeListComponent implements OnInit {
     this.recepieService.reciepeDetailsInfo.emit(data);
   }
   
+  newReceipe(){
+    this.router.navigate(["new"],{relativeTo:this.route})
+  }
 
 }

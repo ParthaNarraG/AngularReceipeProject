@@ -1,6 +1,6 @@
-<button class="btn btn-success">New Receipe</button>
+<button class="btn btn-success" (click)="newReceipe()">New Receipe</button>
 <div class="row no-gutters">
     <div class="w-100">
-        <app-receipe-item [receipe]="receipeEl" (click)="receipeDetails(receipeEl)" *ngFor="let receipeEl of receipes"></app-receipe-item>
+        <app-receipe-item [receipe]="receipeEl" [index]="i"  *ngFor="let receipeEl of receipes;let i=index"></app-receipe-item>
     </div>  
 </div>

@@ -1,9 +1,11 @@
-<div class="card-wrapper my-5 w-100">
-    <div class="card-image">
-        <img [src]="receipe.imagePath" alt={{receipe.name}} class="img-responsive receipeImage">
+<a routerLink="{{index}}" routerLinkActive="active">
+    <div class="card-wrapper my-5 w-100">
+        <div class="card-image">
+            <img [src]="receipe.imagePath" alt={{receipe.name}} class="img-responsive receipeImage">
+        </div>
+        <div class="mx-2">
+            <h5>{{receipe.name}}</h5>
+            <p>{{receipe.description}}</p>
+        </div>
     </div>
-    <div class="mx-2">
-        <h5>{{receipe.name}}</h5>
-        <p>{{receipe.description}}</p>
-    </div>
-</div>
+</a>

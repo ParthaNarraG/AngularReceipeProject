@@ -6,6 +6,7 @@ import { ingredient } from '../shared/ingredient.model';
   providedIn: 'root'
 })
 export class ReceipeServiceService {
+
   @Output() reciepeDetailsInfo=new EventEmitter();
   receipes: receipe[]=[
     new receipe("Test Receipe1",
@@ -24,4 +25,8 @@ export class ReceipeServiceService {
   ]
 
   constructor() { }
+
+  getReceipe(index:number){
+    return this.receipes[index];
+  }
 }
