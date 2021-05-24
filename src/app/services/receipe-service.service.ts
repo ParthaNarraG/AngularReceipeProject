@@ -1,4 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 import { receipe } from '../receipes/receipes/receipe.model'
 import { ingredient } from '../shared/ingredient.model';
 
@@ -7,7 +8,7 @@ import { ingredient } from '../shared/ingredient.model';
 })
 export class ReceipeServiceService {
 
-  @Output() reciepeDetailsInfo=new EventEmitter();
+  reciepeDetailsInfo=new Subject();
   receipes: receipe[]=[
     new receipe("Test Receipe1",
     "New Receipe Added to the list",

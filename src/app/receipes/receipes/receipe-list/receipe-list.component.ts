@@ -25,7 +25,7 @@ export class ReceipeListComponent implements OnInit {
    * @param data 
    */
   receipeDetails(data:any){
-    this.recepieService.reciepeDetailsInfo.emit(data);
+    this.recepieService.reciepeDetailsInfo.next(data);
   }
   
   newReceipe(){
