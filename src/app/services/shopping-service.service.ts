@@ -8,12 +8,27 @@ import { ingredient } from '../shared/ingredient.model'
 export class ShoppingServiceService {
 
   addNewIngredient:any=new Subject();
+  sendItemIndex:any=new Subject();
 
-  ingredient:ingredient[]=[new ingredient('apples','10'),
-  new ingredient('tomotoes','15')]
+  ingredient:ingredient[]=[new ingredient('apples',10),
+  new ingredient('tomotoes',15)]
 
   addIngredient(data:any){
+    alert('hi');
     this.ingredient.push(data);
+  }
+
+  getIngredient(index:number){
+    return this.ingredient[index];
+  }
+
+  updateIngredient(index:number,newIngredient:any){
+    console.log(newIngredient);
+    this.ingredient[index]=newIngredient; 
+  }
+
+  deleteIngredient(index:number){
+    this.ingredient.splice(index,1);
   }
 
   constructor() { }

@@ -9,7 +9,7 @@
         <div class="dropdown-menu" [ngClass]="{'show': isShow===true}" [ngStyle]="{'cursor':'pointer'}">
           <a class="dropdown-item" (click)="sendIngredients(receipeDetails.ingredient)">ShoppingList</a>
           <a class="dropdown-item" (click)="editReceipe()">Edit Receipe</a>
-          <a class="dropdown-item" >Something else here</a>
+          <a class="dropdown-item" (click)="deleteReceipe()">Delete Recepie</a>
         </div>
     </div>
     <ul class="list-group">

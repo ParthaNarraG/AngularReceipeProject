@@ -4,5 +4,5 @@
         <hr>
     </div>
 </div>
-<p class="ingredientList" *ngFor="let list of ingredient">{{list.ingredientName}} {{list.quantity}}</p>
+<p class="ingredientList" *ngFor="let list of ingredient;let i=index" (click)="editItem(i)">{{list.ingredientName}} {{list.quantity}}</p>
 
