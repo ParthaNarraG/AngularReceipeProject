@@ -3,8 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { SuccessAlertComponent } from './success-alert/success-alert.component';
-// import { WarningAlertComponent } from './warning-alert/warning-alert.component';
 import { HeaderComponent } from './header/header/header.component';
 import { ReceipesComponent } from './receipes/receipes/receipes.component';
 import { ReceipeListComponent } from './receipes/receipes/receipe-list/receipe-list.component';
@@ -15,6 +13,7 @@ import { ShoppingEditComponent } from './shoppingList/shopping-edit/shopping-edi
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ReceipeStartComponent } from './receipes/receipe-start/receipe-start.component';
 import { ReceipeEditComponent } from './receipes/receipe-edit/receipe-edit.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -34,7 +33,8 @@ import { ReceipeEditComponent } from './receipes/receipe-edit/receipe-edit.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

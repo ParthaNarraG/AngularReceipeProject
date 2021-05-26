@@ -3,8 +3,10 @@
     <input type="text" class="form-control" formControlName="name">
     <label>ImageUrl:</label>
     <input type="text" #image class="form-control" formControlName="imagePath">
-    <img [src]="image.value" class="img-responsive">
-    <label>Description:</label>
+    <img [src]="image.value" class="img-responsive my-2" height="200">
+    <div>
+        <label class="my-2">Description:</label>    
+    </div>
     <textarea rows="4" class="form-control" formControlName="description"></textarea>
     <div formArrayName="ingredients">
         <div *ngFor="let ingredient of getControls();let i=index" class="my-2">
