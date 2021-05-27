@@ -4,6 +4,7 @@ import { ReceipeEditComponent } from './receipes/receipe-edit/receipe-edit.compo
 import { ReceipeStartComponent } from './receipes/receipe-start/receipe-start.component';
 import { ReceipeDetailComponent } from './receipes/receipes/receipe-detail/receipe-detail.component';
 import { ReceipesComponent } from './receipes/receipes/receipes.component';
+import { RecepiesResolverService } from './services/recepies-resolver.service';
 import { ShoppingListComponent } from './shoppingList/shopping-list/shopping-list.component';
 
 const routes: Routes = [
@@ -21,10 +22,10 @@ const routes: Routes = [
         path:'new',component:ReceipeEditComponent
       },
       {
-        path:':id', component:ReceipeDetailComponent
+        path:':id', component:ReceipeDetailComponent,resolve:[RecepiesResolverService]
       },
       {
-        path:':id/edit',component:ReceipeEditComponent
+        path:':id/edit',component:ReceipeEditComponent,resolve:[RecepiesResolverService]
       }
     ]
   },

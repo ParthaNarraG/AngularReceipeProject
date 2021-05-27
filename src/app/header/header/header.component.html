@@ -37,8 +37,8 @@
                     Manage
                 </button>
                 <div class="dropdown-menu" [ngClass]="{'show': isShow===true}" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Save Data</a>
-                    <a class="dropdown-item" href="#">Fetch Data</a>
+                    <a class="dropdown-item"  (click)="onSaveData()">Save Data</a>
+                    <a class="dropdown-item"  (click)="onFetchData()">Fetch Data</a>
                 </div>
             </div>
         </div>

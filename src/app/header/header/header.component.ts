@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { DataStorageService } from 'src/app/services/data-storage.service';
+import { ReceipeServiceService } from 'src/app/services/receipe-service.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,9 @@ export class HeaderComponent implements OnInit {
   isShow:boolean=false;
   @Output() navigateItem=new EventEmitter()
 
-  constructor() { }
+  constructor(private storage:DataStorageService,private recepieService:ReceipeServiceService) { 
+    this.onFetchData();
+  }
 
   ngOnInit(): void {
   }
@@ -25,6 +29,34 @@ export class HeaderComponent implements OnInit {
 
   manageDropdown(){
     this.isShow=!this.isShow;
+  }
+
+  /**
+   * @description Saving the newly added recepies to the database
+   * @returns a promise 
+   */
+  async onSaveData(){
+    try{
+      const response:any=await this.storage.saveData();
+      console.log(response);
+    }
+    catch(error:any){
+      console.log(error);
+    }
+  }
+
+  async onFetchData(){
+    try{
+      const response:any=await this.storage.fetchData();
+      response.map((ele:any)=>{
+        ele.hasOwnProperty("ingredient")?"":ele.ingredient=[];
+      })
+      this.recepieService.receipes=response;
+      this.recepieService.getReceipesArray.next(this.recepieService.receipes);
+    }
+    catch(error:any){
+      console.log(error)
+    }
   }
 
 }

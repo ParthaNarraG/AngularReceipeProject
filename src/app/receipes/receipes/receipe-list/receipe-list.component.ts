@@ -14,7 +14,11 @@ export class ReceipeListComponent implements OnInit {
   receipes:any;
   
 
-  constructor(private recepieService:ReceipeServiceService,private router:Router,private route:ActivatedRoute) { }
+  constructor(private recepieService:ReceipeServiceService,private router:Router,private route:ActivatedRoute) { 
+    this.recepieService.getReceipesArray.subscribe((data)=>{
+      this.receipes=data;
+    })
+  }
 
   ngOnInit(): void {
     this.receipes=this.recepieService.receipes;

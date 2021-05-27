@@ -1,5 +1,4 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { receipe } from '../../receipe.model';
 
 @Component({
   selector: 'app-receipe-item',
@@ -9,7 +8,9 @@ import { receipe } from '../../receipe.model';
 export class ReceipeItemComponent implements OnInit {
   @Input() index:number=0;
   @Input() receipe:any;
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit(): void {
   }
