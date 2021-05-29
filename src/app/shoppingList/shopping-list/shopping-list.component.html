@@ -1,9 +1,11 @@
 <app-header></app-header>
-<div class="row no-gutters">
-    <div class="col-xs-10">
-        <app-shopping-edit></app-shopping-edit>
-        <hr>
+<div class="container">
+    <div class="row no-gutters">
+        <div class="col-xs-10">
+            <app-shopping-edit></app-shopping-edit>
+            <hr>
+        </div>
     </div>
+    <p class="ingredientList" *ngFor="let list of ingredient;let i=index" (click)="editItem(i)">{{list.ingredientName}} {{list.quantity}}</p>
 </div>
-<p class="ingredientList" *ngFor="let list of ingredient;let i=index" (click)="editItem(i)">{{list.ingredientName}} {{list.quantity}}</p>
 

@@ -14,7 +14,6 @@ export class ShoppingServiceService {
   new ingredient('tomotoes',15)]
 
   addIngredient(data:any){
-    alert('hi');
     this.ingredient.push(data);
   }
 

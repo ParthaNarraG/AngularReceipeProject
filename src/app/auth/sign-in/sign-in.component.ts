@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -17,42 +18,29 @@ export class SignInComponent implements OnInit {
   }
 
   async onSubmit(data:any){
-    console.log(data);
     const body={
       email:data.value.email,
       password:data.value.password,
       returnSecureToken:true
     }
+    let obs:any;
     this.isLoading=true;
-    if(this.isLoginMode){
-      try{
-        const response:any=await this.authService.signIn(body);
-        this.isLoading=false;
-        console.log(response);
-      }
-      catch(error:any){
-        this.isLoading=false;
+    this.isLoginMode?obs=this.authService.signIn(body):obs=this.authService.signUp(body);
+    obs.subscribe((response:any)=>{
+      this.isLoading=false;
+      if(response.hasOwnProperty("displayName")){
         Swal.fire({
-          text:error.error.error.message,
-          icon:"error"
+          text:`Welcome ${response.displayName}`,
+          icon:"success"
         })
       }
-    }
-    else{
-      try{
-        const response:any=await this.authService.signUp(body);
-        this.isLoading=false;
-        console.log(response)
-      }
-      catch(error:any){
-        Swal.fire({
-          text: error.error.error.message,
-          icon: "error"
-        })
-        this.isLoading=false;
-        console.log(error);
-      }
-    }
+    },(error:any)=>{
+      this.isLoading=false;
+      Swal.fire({
+        text:error,
+        icon:"error"
+      })
+    })
   }
 
   ngOnInit(): void {
