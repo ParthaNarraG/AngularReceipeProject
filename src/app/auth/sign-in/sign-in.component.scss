@@ -1,0 +1,24 @@
+.login-wrapper{
+    width: 100%;
+    height: 100vh;
+    background: #7AD7F0;
+    .form-wrapper{
+        width: 100%;
+        background: white;
+        height: 625px;
+        .form-data{
+            height: 100%;
+            width: 100%;
+        }
+        .img-data{
+            height: 100%;
+            width: 100%;
+            background: green;
+            .responsive{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}

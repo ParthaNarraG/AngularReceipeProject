@@ -1,11 +1,13 @@
 .card-wrapper{
     width:100% !important;
+    max-width:300px;
     height: 350px;
     border: 1px solid #DCDCDC;
+    border-radius: 10px;
     cursor: pointer;
     .card-image{
         width: 100%;
-        height: 60%;
+        height: auto;
         .receipeImage{
             object-fit: cover;
             height:200px;
@@ -18,3 +20,8 @@ a{
   text-decoration: none;  
 }
 
+.description{
+    width: 100% !important;
+    height: 100% !important;
+    text-overflow: ellipsis;
+}

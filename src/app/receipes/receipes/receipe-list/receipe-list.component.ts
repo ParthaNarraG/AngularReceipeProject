@@ -16,6 +16,7 @@ export class ReceipeListComponent implements OnInit {
 
   constructor(private recepieService:ReceipeServiceService,private router:Router,private route:ActivatedRoute) { 
     this.recepieService.getReceipesArray.subscribe((data)=>{
+      console.log(data);
       this.receipes=data;
     })
   }

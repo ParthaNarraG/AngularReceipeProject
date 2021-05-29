@@ -20,7 +20,12 @@ export class DataStorageService {
 
    fetchData(){
     return new Promise((resolve,reject)=>{
-      this.http.get(`${this.baseUrl}recepies.json`).subscribe(resolve,reject);
+      this.http.get(`${this.baseUrl}recepies.json`).pipe(map((response:any)=>{
+        response.map((ele:any)=>{
+          ele.hasOwnProperty("ingredient")?"":ele.ingredient=[];
+        })
+        return response;
+      })).subscribe(resolve,reject);
     })
   }
 

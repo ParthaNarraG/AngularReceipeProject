@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { ReceipeEditComponent } from './receipes/receipe-edit/receipe-edit.component';
 import { ReceipeStartComponent } from './receipes/receipe-start/receipe-start.component';
 import { ReceipeDetailComponent } from './receipes/receipes/receipe-detail/receipe-detail.component';
@@ -9,7 +10,11 @@ import { ShoppingListComponent } from './shoppingList/shopping-list/shopping-lis
 
 const routes: Routes = [
   {
-    path:'',redirectTo:'/receipe',pathMatch:"full"
+    path:'',redirectTo:'/login',pathMatch:"full"
+  },
+  {
+    path:'login',
+    component:SignInComponent
   },
   {
     path:'receipe',
@@ -32,7 +37,7 @@ const routes: Routes = [
   {
     path:'shopping',
     component:ShoppingListComponent
-  }
+  },
 ];
 
 @NgModule({

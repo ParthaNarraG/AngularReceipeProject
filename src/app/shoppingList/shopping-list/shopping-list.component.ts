@@ -25,4 +25,4 @@ export class ShoppingListComponent implements OnInit {
   editItem(i:any){
     this.shoppingService.sendItemIndex.next(i);
   }
-}
+} 

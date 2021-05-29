@@ -48,10 +48,8 @@ export class HeaderComponent implements OnInit {
   async onFetchData(){
     try{
       const response:any=await this.storage.fetchData();
-      response.map((ele:any)=>{
-        ele.hasOwnProperty("ingredient")?"":ele.ingredient=[];
-      })
       this.recepieService.receipes=response;
+      console.log(response);
       this.recepieService.getReceipesArray.next(this.recepieService.receipes);
     }
     catch(error:any){

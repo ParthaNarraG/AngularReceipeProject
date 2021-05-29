@@ -1,7 +1,7 @@
 <h5 class="mt-2">Click an item for Receipe Details</h5>
 <div class="my-5">
-    <p>{{receipeDetails.name}}</p>
-    <p>{{receipeDetails.description}}</p>
+    <p class="description">{{receipeDetails.name}}</p>
+    <p class="description">{{receipeDetails.description}}</p>
     <div class="btn-group my-2" (click)="manageReceipeDropdown()" *ngIf="receipeDetails.name!==undefined">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Manage Recepie

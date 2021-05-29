@@ -13,7 +13,9 @@ import { ShoppingEditComponent } from './shoppingList/shopping-edit/shopping-edi
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ReceipeStartComponent } from './receipes/receipe-start/receipe-start.component';
 import { ReceipeEditComponent } from './receipes/receipe-edit/receipe-edit.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { LoaderComponent } from './loader/loader.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http'
     ShoppingListComponent,
     DropdownDirective,
     ReceipeStartComponent,
-    ReceipeEditComponent
+    ReceipeEditComponent,
+    SignInComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
