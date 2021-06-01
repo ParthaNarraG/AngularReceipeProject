@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit , EventEmitter, Output} from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class SignInComponent implements OnInit {
   isLoginMode=true;
   isLoading=false;
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,private router:Router) { }
 
   switchMode(){
     this.isLoginMode=!this.isLoginMode;
@@ -28,13 +28,9 @@ export class SignInComponent implements OnInit {
     this.isLoginMode?obs=this.authService.signIn(body):obs=this.authService.signUp(body);
     obs.subscribe((response:any)=>{
       this.isLoading=false;
-      if(response.hasOwnProperty("displayName")){
-        Swal.fire({
-          text:`Welcome ${response.displayName}`,
-          icon:"success"
-        })
-      }
-    },(error:any)=>{
+      this.authService.handleUserInfo(response);
+      this.router.navigate(['/receipe']);
+    },(error:any)=>{  
       this.isLoading=false;
       Swal.fire({
         text:error,
@@ -45,5 +41,8 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+
+
 
 }

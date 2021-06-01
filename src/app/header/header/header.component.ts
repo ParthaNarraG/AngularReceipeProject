@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { ReceipeServiceService } from 'src/app/services/receipe-service.service';
 
@@ -9,19 +10,29 @@ import { ReceipeServiceService } from 'src/app/services/receipe-service.service'
 })
 export class HeaderComponent implements OnInit {
   isShow:boolean=false;
+  isAuthenticated:boolean=false;
   @Output() navigateItem=new EventEmitter()
 
-  constructor(private storage:DataStorageService,private recepieService:ReceipeServiceService) { 
+  constructor(private storage:DataStorageService,private recepieService:ReceipeServiceService,private authService:AuthService) { 
     this.onFetchData();
   }
 
   ngOnInit(): void {
+    this.authService.userObserver.subscribe((data)=>{
+      if(data===null){
+          //...
+      }
+      else{
+        this.isAuthenticated=true;
+      }
+    })
   }
 
   /**
    * @description sending the details of which navigation link clicked by the user
    * @param data 
    */
+
   navigator(data:any){
     this.navigateItem.emit(data);
   }
@@ -57,4 +68,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  logout(){
+    this.authService.onlogout();
+  }
 }

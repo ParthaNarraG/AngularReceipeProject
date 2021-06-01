@@ -12,7 +12,7 @@ import { ingredient } from 'src/app/shared/ingredient.model';
 export class ReceipeDetailComponent implements OnInit {
   id:number=0;
   isShow:boolean=false;
-  receipeDetails: any = "";
+  receipeDetails: any;
   constructor(private recepieService: ReceipeServiceService, private shoppingService: ShoppingServiceService,
     private route:ActivatedRoute,private router:Router) {
     this.recepieService.reciepeDetailsInfo.subscribe((data: any) => {
@@ -40,6 +40,7 @@ export class ReceipeDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{
       this.id=+params['id'];
+      console.log(this.recepieService.getReceipes());
       this.receipeDetails=this.recepieService.getReceipe(this.id);
     })
   }

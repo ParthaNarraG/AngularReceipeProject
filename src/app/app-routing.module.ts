@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { ReceipeEditComponent } from './receipes/receipe-edit/receipe-edit.component';
-import { ReceipeStartComponent } from './receipes/receipe-start/receipe-start.component';
 import { ReceipeDetailComponent } from './receipes/receipes/receipe-detail/receipe-detail.component';
 import { ReceipesComponent } from './receipes/receipes/receipes.component';
 import { RecepiesResolverService } from './services/recepies-resolver.service';
@@ -10,7 +10,7 @@ import { ShoppingListComponent } from './shoppingList/shopping-list/shopping-lis
 
 const routes: Routes = [
   {
-    path:'',redirectTo:'/login',pathMatch:"full"
+    path:'',redirectTo:'/receipe',pathMatch:"full"
   },
   {
     path:'login',
@@ -19,10 +19,8 @@ const routes: Routes = [
   {
     path:'receipe',
     component:ReceipesComponent,
+    canActivate:[AuthGuardGuard],
     children:[
-      {
-        path:'',component:ReceipeStartComponent,
-      },
       {
         path:'new',component:ReceipeEditComponent
       },
@@ -36,6 +34,7 @@ const routes: Routes = [
   },
   {
     path:'shopping',
+    canActivate:[AuthGuardGuard],
     component:ShoppingListComponent
   },
 ];

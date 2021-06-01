@@ -11,11 +11,11 @@ import { ReceipeDetailComponent } from './receipes/receipes/receipe-detail/recei
 import { ShoppingListComponent} from './shoppingList/shopping-list/shopping-list.component'
 import { ShoppingEditComponent } from './shoppingList/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { ReceipeStartComponent } from './receipes/receipe-start/receipe-start.component';
 import { ReceipeEditComponent } from './receipes/receipe-edit/receipe-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { LoaderComponent } from './loader/loader.component'
+import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { LoaderComponent } from './loader/loader.component'
     ShoppingEditComponent,
     ShoppingListComponent,
     DropdownDirective,
-    ReceipeStartComponent,
     ReceipeEditComponent,
     SignInComponent,
     LoaderComponent
@@ -40,7 +39,13 @@ import { LoaderComponent } from './loader/loader.component'
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpInterceptorInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
