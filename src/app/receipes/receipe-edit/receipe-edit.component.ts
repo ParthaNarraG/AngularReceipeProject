@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthCallsService } from 'src/app/services/auth-calls.service';
 import { ReceipeServiceService } from 'src/app/services/receipe-service.service';
 import { receipe } from '../receipes/receipe.model';
 
@@ -13,7 +14,10 @@ export class ReceipeEditComponent implements OnInit {
   id:number=0;
   editForm:any;
   editMode=false;
-  constructor(private route:ActivatedRoute,private receipe:ReceipeServiceService,private router:Router) { }
+  constructor(private route:ActivatedRoute,
+    private receipe:ReceipeServiceService,
+    private router:Router,
+    private auth:AuthCallsService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{
@@ -38,10 +42,14 @@ export class ReceipeEditComponent implements OnInit {
       this.editForm.value.imagePath,
       this.editForm.value.ingredients)
     if(this.editMode){
-      this.receipe.updateReceipe(this.id,newReceipe)
+      this.receipe.updateReceipe(this.id,newReceipe);
+      this.auth.onSaveData();
+      this.auth.onFetchData();
     }
     else{
-      this.receipe.addReceipe(newReceipe)
+      this.receipe.addReceipe(newReceipe);
+      this.auth.onSaveData();
+      this.auth.onFetchData();
     }
     this.onCancel();
   }

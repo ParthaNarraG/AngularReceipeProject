@@ -1,41 +1,40 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { receipe } from '../receipes/receipes/receipe.model'
-import { ingredient } from '../shared/ingredient.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReceipeServiceService {
   receipes:receipe[]=[];
-  getReceipesArray=new Subject();
+  getReceipesArray=new BehaviorSubject(this.receipes);
   reciepeDetailsInfo=new Subject();
 
   constructor(private router:Router) { }
 
   getReceipe(index:number){
+    this.getReceipesArray.next(this.receipes);
     return this.receipes[index];
   }
 
   getReceipes(){
+    this.getReceipesArray.next(this.receipes);
     return this.receipes;
   }
 
   addReceipe(newRecepie:receipe){
     this.receipes.push(newRecepie);
-    console.log(this.receipes);
   }
 
   updateReceipe(index:number,updatedReceipe:any){
-    console.log(updatedReceipe);
-    console.log(this.receipes);
-    this.receipes[index]=updatedReceipe
-    console.log(this.receipes)
+    this.receipes[index]=updatedReceipe;
   }
 
   deleteRecepie(index:number){
     this.receipes.splice(index,1);
+    this.reciepeDetailsInfo.next(this.receipes);
     this.router.navigate(['/receipe'])
   }
 

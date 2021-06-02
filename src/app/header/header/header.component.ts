@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   @Output() navigateItem=new EventEmitter()
 
   constructor(private storage:DataStorageService,private recepieService:ReceipeServiceService,private authService:AuthService) { 
-    this.onFetchData();
+    // this.onFetchData();
   }
 
   ngOnInit(): void {
@@ -38,15 +38,15 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  manageDropdown(){
+ /*  manageDropdown(){
     this.isShow=!this.isShow;
-  }
+  } */
 
   /**
    * @description Saving the newly added recepies to the database
    * @returns a promise 
    */
-  async onSaveData(){
+ /*  async onSaveData(){
     try{
       const response:any=await this.storage.saveData();
       console.log(response);
@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
     catch(error:any){
       console.log(error)
     }
-  }
+  } */
 
   logout(){
     this.authService.onlogout();

@@ -13,7 +13,7 @@ export class AuthCallsService {
     try{
       const response:any=await this.dataStorage.fetchData();
       this.receipeService.receipes=response;
-      console.log(response);
+      console.log(this.receipeService.receipes,"AuthCalls");
       this.receipeService.getReceipesArray.next(this.receipeService.receipes);
     }
     catch(error:any){
@@ -21,4 +21,13 @@ export class AuthCallsService {
     }
   }
 
+  async onSaveData(){
+    try{
+      const response:any=await this.dataStorage.saveData();
+      this.onFetchData()
+    }
+    catch(error:any){
+      console.log(error);
+    }
+  }
 }

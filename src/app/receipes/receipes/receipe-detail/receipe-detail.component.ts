@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthCallsService } from 'src/app/services/auth-calls.service';
 import { ReceipeServiceService } from 'src/app/services/receipe-service.service';
 import { ShoppingServiceService } from 'src/app/services/shopping-service.service';
 import { ingredient } from 'src/app/shared/ingredient.model';
@@ -14,10 +15,15 @@ export class ReceipeDetailComponent implements OnInit {
   isShow:boolean=false;
   receipeDetails: any;
   constructor(private recepieService: ReceipeServiceService, private shoppingService: ShoppingServiceService,
-    private route:ActivatedRoute,private router:Router) {
-    this.recepieService.reciepeDetailsInfo.subscribe((data: any) => {
-      this.receipeDetails = data;
-      console.log(data);
+    private route:ActivatedRoute,private router:Router,private auth:AuthCallsService) {
+      this.recepieService.getReceipesArray.subscribe((data)=>{
+        this.receipeDetails=data[this.id]
+      })
+  }
+  ngOnInit(): void {
+    this.route.params.subscribe((params:Params)=>{
+      this.id=+params['id'];
+      this.receipeDetails=this.recepieService.getReceipe(this.id);
     })
   }
 
@@ -37,13 +43,7 @@ export class ReceipeDetailComponent implements OnInit {
     this.isShow=!this.isShow;
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params:Params)=>{
-      this.id=+params['id'];
-      console.log(this.recepieService.getReceipes());
-      this.receipeDetails=this.recepieService.getReceipe(this.id);
-    })
-  }
+
 
   editReceipe(){
     this.router.navigate(["edit"],{relativeTo:this.route})
@@ -51,5 +51,7 @@ export class ReceipeDetailComponent implements OnInit {
 
   deleteReceipe(){
     this.recepieService.deleteRecepie(this.id);
+    this.auth.onSaveData();
+    this.router.navigate(['/receipe']);
   }
 }
