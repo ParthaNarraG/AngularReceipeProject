@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AuthCallsService } from 'src/app/services/auth-calls.service';
 import { ReceipeServiceService } from 'src/app/services/receipe-service.service';

@@ -42,14 +42,12 @@ export class ReceipeEditComponent implements OnInit {
       this.editForm.value.imagePath,
       this.editForm.value.ingredients)
     if(this.editMode){
-      this.receipe.updateReceipe(this.id,newReceipe);
-      this.auth.onSaveData();
-      this.auth.onFetchData();
+      this.receipe.updateReceipe(this.id,newReceipe);  
+      this.auth.onSaveData(); 
     }
     else{
       this.receipe.addReceipe(newReceipe);
-      this.auth.onSaveData();
-      this.auth.onFetchData();
+      this.auth.onSaveData(); 
     }
     this.onCancel();
   }
