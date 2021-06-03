@@ -7,7 +7,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'maxmillianTutorials';
+  title = 'Receipe Book';
   selectedNavLink:any="receipes";
   constructor(private authService:AuthService){
     this.authService.autoLogin();

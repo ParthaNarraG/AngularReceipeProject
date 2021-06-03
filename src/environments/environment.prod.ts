@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  webKey:"AIzaSyBx_WScLMDegH8vAto9EU0DZGgrxUwvECU"
 };
