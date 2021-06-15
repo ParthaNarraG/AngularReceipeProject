@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { SharedModule } from "./shared.module";
 import { CommonModule } from "@angular/common";
+import { FilteredPipePipe } from "./pipes/filtered-pipe.pipe";
+import { FilterDirectiveDirective } from './directives/filter-directive.directive';
 
 @NgModule({
     declarations:[
@@ -17,7 +19,9 @@ import { CommonModule } from "@angular/common";
         ReceipeListComponent,
         ReceipesComponent,
         ReceipeDetailComponent,
-        ReceipeEditComponent
+        ReceipeEditComponent,
+        FilteredPipePipe,
+        FilterDirectiveDirective
     ],
     imports:[
         CommonModule,

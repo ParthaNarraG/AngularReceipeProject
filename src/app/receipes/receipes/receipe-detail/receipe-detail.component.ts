@@ -16,9 +16,13 @@ export class ReceipeDetailComponent implements OnInit {
   receipeDetails: any;
   constructor(private recepieService: ReceipeServiceService, private shoppingService: ShoppingServiceService,
     private route:ActivatedRoute,private router:Router,private auth:AuthCallsService) {
-      this.recepieService.getReceipesArray.subscribe((data)=>{
-        this.receipeDetails=data[this.id]
-      })
+      // this.recepieService.getReceipesArray.subscribe((data)=>{
+      //   this.receipeDetails=data[this.id]
+      //   // this.receipeDetails=this.recepieService.filteredReceipes[this.id];  
+      // })
+        this.recepieService.filteredReceipeInfo.subscribe((data:any)=>{
+          this.receipeDetails=data[this.id];
+        })
   }
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{

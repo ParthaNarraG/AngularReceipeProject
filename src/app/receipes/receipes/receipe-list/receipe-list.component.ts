@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FilteredPipePipe } from 'src/app/pipes/filtered-pipe.pipe';
 import { AuthCallsService } from 'src/app/services/auth-calls.service';
 import { ReceipeServiceService } from 'src/app/services/receipe-service.service';
-import { receipe } from '../receipe.model'
+
 
 @Component({
   selector: 'app-receipe-list',
@@ -11,34 +12,37 @@ import { receipe } from '../receipe.model'
 })
 export class ReceipeListComponent implements OnInit {
 
-  @Output() reciepeDetailsInfo=new EventEmitter();
-  receipes:any;
-  
+  @Output() reciepeDetailsInfo = new EventEmitter();
+  receipes: any;
+  type: any = "All";
 
-  constructor(private recepieService:ReceipeServiceService,
-    private router:Router,private route:ActivatedRoute,
-    private auth:AuthCallsService) { 
-    this.recepieService.getReceipesArray.subscribe((data)=>{
-      this.receipes=data;
-      console.log(data,"RecepieList");
-    })
+
+  constructor(private recepieService: ReceipeServiceService,
+    private router: Router, private route: ActivatedRoute,
+    private auth: AuthCallsService,
+    private filteredPipe:FilteredPipePipe,
+    private cds:ChangeDetectorRef) {
+      this.receipes=this.recepieService.filteredReceipes;
   }
+
+  
 
   ngOnInit(): void {
     this.auth.onFetchData();
-    this.receipes=this.recepieService.getReceipes();
+    this.recepieService.filteredReceipeInfo.subscribe((data:any)=>{
+      this.receipes=data;
+      this.cds.detectChanges();
+    })
   }
 
-  /**
-   * @description sending the receipe details clicked by the user
-   * @param data 
-   */
-  receipeDetails(data:any){
-    this.recepieService.reciepeDetailsInfo.next(data);
-  }
-  
-  newReceipe(){
-    this.router.navigate(["new"],{relativeTo:this.route})
+  newReceipe() {
+    this.router.navigate(["new"], { relativeTo: this.route })
   }
 
+  filter(data: any) {
+    this.type = data;
+    localStorage.setItem("type", data);
+    this.receipes=this.filteredPipe.transform(this.receipes,data,"type");
+    this.router.navigate(["../"])
+  }
 }

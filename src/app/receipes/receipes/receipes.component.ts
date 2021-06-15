@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceipesComponent implements OnInit {
 
-  receipeInfo:any="";
   constructor() { }
 
   ngOnInit(): void {

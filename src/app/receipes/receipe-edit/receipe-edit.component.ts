@@ -10,85 +10,97 @@ import { receipe } from '../receipes/receipe.model';
   templateUrl: './receipe-edit.component.html',
   styleUrls: ['./receipe-edit.component.scss']
 })
-export class ReceipeEditComponent implements OnInit {
-  id:number=0;
-  editForm:any;
-  editMode=false;
-  constructor(private route:ActivatedRoute,
-    private receipe:ReceipeServiceService,
-    private router:Router,
-    private auth:AuthCallsService) { }
+export class ReceipeEditComponent implements OnInit  {
+  id: number = 0;
+  editForm: any;
+  editMode = false;
+  constructor(private route: ActivatedRoute,
+    private receipe: ReceipeServiceService,
+    private router: Router,
+    private auth: AuthCallsService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params:Params)=>{
-      this.id=+params['id'];
-      this.editMode=params['id']!=null;
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+      this.editMode = params['id'] != null;
     })
     this.editReceipe();
+
   }
 
-  onDeleteIngredient(index:number){
+
+ 
+
+  onDeleteIngredient(index: number) {
     return (this.editForm.get('ingredients') as FormArray).removeAt(index);
   }
 
-  onCancel(){
-    this.router.navigate(['../'],{relativeTo:this.route});
+  onCancel() {
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.editForm.value)
-    let newReceipe:any=new receipe(this.editForm.value.name,
+    let newReceipe: any = new receipe(this.editForm.value.name,
       this.editForm.value.description,
       this.editForm.value.imagePath,
-      this.editForm.value.ingredients)
-    if(this.editMode){
-      this.receipe.updateReceipe(this.id,newReceipe);  
-      this.auth.onSaveData(); 
+      this.editForm.value.ingredients,
+      this.editForm.value.type)
+    if (this.editMode) {
+      this.receipe.updateReceipe(this.id, newReceipe);
+      this.auth.onSaveData();
     }
-    else{
+    else {
       this.receipe.addReceipe(newReceipe);
-      this.auth.onSaveData(); 
+      this.auth.onSaveData();
     }
     this.onCancel();
   }
 
-  addIngredient(){
+  addIngredient() {
     this.editForm.get('ingredients').push(new FormGroup({
-      ingredientName:new FormControl("",Validators.required),
-      quantity:new FormControl("",Validators.compose([Validators.required,Validators.pattern("^[1-9]+[0-9]*$")]))
+      ingredientName: new FormControl("", Validators.required),
+      quantity: new FormControl("", Validators.compose([Validators.required, Validators.pattern("^[1-9]+[0-9]*$")]))
     }))
   }
 
-  getControls(){
+  getControls() {
     return (this.editForm.get('ingredients') as FormArray).controls
   }
 
-  editReceipe(){
-    let receipeItem=this.receipe.getReceipe(this.id);
+  editReceipe() {
+    
+    let receipeItem = this.receipe.getReceipe(this.id);
     console.log(receipeItem)
-    let receipeName="",receipeImage="",receipeDesc="",recepieIngredients=new FormArray([]);
-    if(this.editMode){
-      receipeName=receipeItem.name;
-      receipeImage=receipeItem.imagePath;
-      receipeDesc=receipeItem.description;
-      if(receipeItem['ingredient']){
-        receipeItem.ingredient.map((ele)=>{
+    let receipeName = "", 
+    receipeImage = "", 
+    receipeDesc = "", 
+    receipeType = "", 
+    recepieIngredients = new FormArray([]);
+    if (this.editMode) {
+      receipeName = receipeItem.name;
+      receipeImage = receipeItem.imagePath;
+      receipeDesc = receipeItem.description;
+      receipeType = receipeItem.type;
+      if (receipeItem['ingredient']) {
+        receipeItem.ingredient.map((ele) => {
           recepieIngredients.push(new FormGroup({
-            ingredientName:new FormControl(ele.ingredientName,Validators.required),
-            quantity:new FormControl(ele.quantity,Validators.compose([Validators.required,Validators.pattern("^[1-9]+[0-9]*$")]))
+            ingredientName: new FormControl(ele.ingredientName, Validators.required),
+            quantity: new FormControl(ele.quantity, Validators.compose([Validators.required, Validators.pattern("^[1-9]+[0-9]*$")]))
           }))
         })
       }
     }
-    this.editForm=new FormGroup({
-      name:new FormControl(receipeName,Validators.required),
-      imagePath:new FormControl(receipeImage,Validators.required),
-      description:new FormControl(receipeDesc,Validators.required),
-      ingredients:recepieIngredients
-    })
+    this.editForm = new FormGroup({
+      name: new FormControl(receipeName, Validators.required),
+      imagePath: new FormControl(receipeImage, Validators.required),
+      description: new FormControl(receipeDesc, Validators.required),
+      type: new FormControl(receipeType,Validators.required),
+      ingredients: recepieIngredients
+    })  
   }
 
-  
+
 
 
 }

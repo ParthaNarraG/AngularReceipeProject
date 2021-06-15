@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ShoppingServiceService } from 'src/app/services/shopping-service.service';
 import { ingredient } from 'src/app/shared/ingredient.model';
+
 
 @Component({
   selector: 'app-shopping-edit',
@@ -45,6 +45,7 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
     }
     else{
       this.shoppingService.addIngredient(updateItem)
+      // this.store.dispatch({type:"ADD_INGREDIENT",payload:updateItem});
       this.onClear();
     }
   }

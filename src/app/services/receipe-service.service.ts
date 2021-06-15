@@ -9,19 +9,23 @@ import { receipe } from '../receipes/receipes/receipe.model'
 })
 export class ReceipeServiceService {
   receipes:receipe[]=[];
+  filteredReceipes:receipe[]=[];
   getReceipesArray=new BehaviorSubject(this.receipes);
   reciepeDetailsInfo=new Subject();
+  filteredReceipeInfo=new BehaviorSubject(this.filteredReceipes);
 
   constructor(private router:Router) { }
 
   getReceipe(index:number){
-    this.getReceipesArray.next(this.receipes);
-    return this.receipes[index];
+    // return this.receipes[index];
+    return this.filteredReceipes[index];
   }
 
   getReceipes(){
-    this.getReceipesArray.next(this.receipes);
-    return this.receipes;
+     this.receipes.map((ele,i)=>{
+       ele.id=i;
+     });
+     return this.receipes;
   }
 
   addReceipe(newRecepie:receipe){
@@ -29,13 +33,27 @@ export class ReceipeServiceService {
   }
 
   updateReceipe(index:number,updatedReceipe:any){
-    this.receipes[index]=updatedReceipe;
+    const{id}=this.filteredReceipes[index]
+    updatedReceipe.id=id;
+    this.filteredReceipes[index]=updatedReceipe;
+    this.receipes.map((ele,index)=>{
+      this.filteredReceipes.map(elem=>{
+        if(ele.id===elem.id){
+          this.receipes[index]=elem;
+        }
+      })
+    })
   }
 
   deleteRecepie(index:number){
-    this.receipes.splice(index,1);
-    this.reciepeDetailsInfo.next(this.receipes);
-    this.router.navigate(['/receipe'])
+    const id:any=this.filteredReceipes[index].id;
+    console.log(id);
+    this.receipes.map((ele,i)=>{
+      if(ele.id===id){
+        this.receipes.splice(index,1);
+        this.reciepeDetailsInfo.next(this.receipes);
+        this.router.navigate(['/receipe'])
+      }
+    })
   }
-
 }

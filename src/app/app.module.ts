@@ -7,8 +7,9 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorInterceptor } from './interceptor/http-interceptor.interceptor';
 import { SharedModule } from './shared.module';
-
-
+import { FilteredPipePipe } from './pipes/filtered-pipe.pipe';
+import { StoreModule } from '@ngrx/store';
+import {reducers} from "../app/shoppingList/shopping-list/store/shopping-list.reducer"
 
 @NgModule({
   declarations: [
@@ -16,18 +17,20 @@ import { SharedModule } from './shared.module';
     DropdownDirective,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    // StoreModule.forRoot({message:reducers}),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-  ],
+  ],  
   providers: [{
     provide : HTTP_INTERCEPTORS,
     useClass : HttpInterceptorInterceptor,
     multi: true
-  }
+  },
+  FilteredPipePipe
   ],
   bootstrap: [AppComponent]
 })

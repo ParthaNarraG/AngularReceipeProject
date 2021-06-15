@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FilteredPipePipe } from '../pipes/filtered-pipe.pipe';
 import { DataStorageService } from './data-storage.service';
 import { ReceipeServiceService } from './receipe-service.service';
 
@@ -7,14 +8,17 @@ import { ReceipeServiceService } from './receipe-service.service';
 })
 export class AuthCallsService {
 
-  constructor(private dataStorage:DataStorageService,private receipeService:ReceipeServiceService) { }
+  constructor(private dataStorage:DataStorageService,
+    private receipeService:ReceipeServiceService,
+    private filteredPipe:FilteredPipePipe) { }
 
   async onFetchData(){
     try{
+      let type:any="All";
       const response:any=await this.dataStorage.fetchData();
       this.receipeService.receipes=response;
-      console.log(this.receipeService.receipes,"AuthCalls");
-      this.receipeService.getReceipesArray.next(this.receipeService.receipes);
+      this.receipeService.filteredReceipes=response;
+      this.filteredPipe.transform(response,type,"type");
     }
     catch(error:any){
       console.log(error)
